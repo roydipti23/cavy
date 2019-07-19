@@ -1,10 +1,8 @@
 version: 2
 jobs:
-  ios:
-
-    # Specify the Xcode version to use
-    macos:
-      xcode: "9.0"
+  android:
+    docker:
+      - image: circleci/android:api-25-alpha
 
     steps:
       - checkout
@@ -56,10 +54,10 @@ jobs:
             rm -rf $TMPDIR/metro-*
             watchman watch-del-all
             react-native start --reset-cache &
-            cavy run-ios
+            cavy run-android
 
 workflows:
   version: 2
   ios:
     jobs:
-      - ios
+      - android
